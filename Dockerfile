@@ -15,17 +15,18 @@ RUN apt-get -q update && \
     rm -rf /tmp/*
 
 RUN mkdir -p /data && \
+    chown -R librarian:librarian /PoloniexLendingBot && \
     chown -R librarian:librarian /data
 
 VOLUME ["/data"]
 
 WORKDIR /PoloniexLendingBot
 
-USER librarian
-
 RUN ln -s /data/market_data market_data; \
     ln -s /data/log/botlog.json www/botlog.json
 
 EXPOSE 8100
+
+USER librarian
 
 CMD ["python", "/PoloniexLendingBot/lendingbot.py", "-cfg", "/data/conf/default.cfg"]
