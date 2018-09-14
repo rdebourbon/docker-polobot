@@ -19,6 +19,8 @@ RUN mkdir -p /data && \
 
 VOLUME ["/data"]
 
+WORKDIR /PoloniexLendingBot
+
 RUN ln -s /data/market_data market_data; \
     ln -s /data/log/botlog.json www/botlog.json
 
