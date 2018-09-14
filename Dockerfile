@@ -21,6 +21,8 @@ VOLUME ["/data"]
 
 WORKDIR /PoloniexLendingBot
 
+USER librarian
+
 RUN ln -s /data/market_data market_data; \
     ln -s /data/log/botlog.json www/botlog.json
 
