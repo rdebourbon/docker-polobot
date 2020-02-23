@@ -6,8 +6,11 @@ RUN groupadd -r librarian && useradd -r -g librarian librarian
 
 RUN apt-get -q update && \
     apt-get install -qy --force-yes python-pip build-essential python2.7 && \
-    git clone https://github.com/BitBotFactory/poloniexlendingbot /PoloniexLendingBot && \
-    pip install --no-cache-dir -r /PoloniexLendingBot/requirements.txt && \
+    git clone https://github.com/BitBotFactory/poloniexlendingbot /PoloniexLendingBot 
+    
+COPY requirements.txt /PoloniexLendingBot    
+    
+RUN pip install --no-cache-dir -r /PoloniexLendingBot/requirements.txt && \
     apt-get -y autoremove && \
     apt-get -y clean && \
     rm -rf /var/lib/apt/lists/* && \
